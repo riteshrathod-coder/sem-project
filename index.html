@@ -67,6 +67,9 @@
                 Admin</span>
               <span id="pd-email"
                 style="font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">admin@chefos.com</span>
+              <div style="font-size:11px;color:var(--text2);margin-top:4px;">
+                <span id="pd-location"></span> • <span id="pd-cuisine"></span>
+              </div>
             </div>
             <button class="btn btn-ghost" onclick="logout()"
               style="justify-content:center;border:none;border-radius:0;padding:12px;color:var(--red);">Log Out</button>
@@ -203,16 +206,19 @@
             <div class="ing-tag selected" onclick="toggleIng(this)">🧅 Onion</div>
             <div class="ing-tag selected" onclick="toggleIng(this)">🍅 Tomato</div>
             <div class="ing-tag" onclick="toggleIng(this)">🧄 Garlic</div>
-            <div class="ing-tag" onclick="toggleIng(this)">🫚 Olive Oil</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🫚 Ginger</div>
             <div class="ing-tag selected" onclick="toggleIng(this)">🌶️ Chili</div>
             <div class="ing-tag selected" onclick="toggleIng(this)">🌿 Garam Masala</div>
             <div class="ing-tag" onclick="toggleIng(this)">🥛 Cream</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🧈 Butter</div>
             <div class="ing-tag" onclick="toggleIng(this)">🧀 Paneer</div>
             <div class="ing-tag" onclick="toggleIng(this)">🍚 Rice</div>
             <div class="ing-tag" onclick="toggleIng(this)">🥬 Spinach</div>
             <div class="ing-tag" onclick="toggleIng(this)">🫘 Dal</div>
-            <div class="ing-tag" onclick="toggleIng(this)">🥚 Eggs</div>
-            <div class="ing-tag" onclick="toggleIng(this)">🧈 Butter</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🥔 Potato</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🍞 Flour</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🥛 Milk</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🍬 Sugar</div>
             <div class="ing-tag" onclick="toggleIng(this)">🍋 Lemon</div>
           </div>
           <div style="display:flex;gap:10px;align-items:center">
@@ -477,14 +483,16 @@
             <div style="display:flex;flex-direction:column;gap:12px">
               <div class="form-group"><label>Kitchen Name</label><input class="input" id="setting-name"
                   value="ChefOS Commercial Kitchen" /></div>
-              <div class="form-group"><label>Location</label><input class="input" value="Nashik, Maharashtra" /></div>
-              <div class="form-group"><label>Cuisine Type</label><select class="input">
+              <div class="form-group"><label>Location</label><input class="input" id="setting-location"
+                  value="Nashik, Maharashtra" /></div>
+              <div class="form-group"><label>Cuisine Type</label><select class="input" id="setting-cuisine">
                   <option>Indian</option>
                   <option>Continental</option>
                   <option>Multi-cuisine</option>
                 </select></div>
-              <div class="form-group"><label>Kitchen ID</label><input class="input" id="setting-kid"
-                  value="KIT-#0042" /></div><button class="btn btn-primary" onclick="saveProfile(event)">Save
+              <div class="form-group"><label>Kitchen ID</label><input class="input" id="setting-kid" value="KIT-#0042"
+                  readonly style="background:var(--surface2);opacity:0.7;cursor:not-allowed;" /></div><button
+                class="btn btn-primary" onclick="saveProfile(event)">Save
                 Profile</button>
             </div>
           </div>

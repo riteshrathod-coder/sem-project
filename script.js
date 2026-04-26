@@ -18,7 +18,40 @@ function clearIngredients() {
   updateIngCount();
   document.getElementById('recipe-results').innerHTML = '';
 }
-let recipes = [];
+let recipes = [
+  { "name": "Butter Chicken", "time": "40 min", "serves": "4", "diff": "Medium", "cal": "420 kcal", "margin": "65%", "tags": ["Chicken", "Tomato", "Cream", "Butter", "Garam Masala", "Onion", "Garlic", "Ginger"], "steps": ["Marinate chicken in yogurt, chili, garam masala for 1 hour.", "Grill or tandoor-roast chicken until charred.", "Sauté butter with onions, garlic, ginger.", "Add tomato puree, cook 10 mins until thick.", "Add cream and remaining spices; simmer 8 mins.", "Fold in roasted chicken; finish with butter and kasuri methi."], "category": "Main Course", "ings": [{ "n": "Chicken", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }] },
+  { "name": "Chicken Tikka Masala", "time": "45 min", "serves": "4", "diff": "Medium", "cal": "390 kcal", "margin": "63%", "tags": ["Chicken", "Tomato", "Cream", "Yogurt", "Garam Masala", "Onion", "Garlic", "Ginger", "Chili"], "steps": ["Marinate chicken in yogurt and spices for 2 hours.", "Skewer and grill chicken tikkas until cooked.", "Make masala: sauté onion, garlic, ginger, tomatoes.", "Add spices, cook until oil separates, add cream.", "Blend masala smooth, strain, bring to simmer.", "Add tikka pieces, garnish with cream and coriander."], "category": "Main Course", "ings": [{ "n": "Chicken", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }] },
+  { "name": "Dal Makhani", "time": "50 min", "serves": "6", "diff": "Medium", "cal": "280 kcal", "margin": "70%", "tags": ["Dal", "Butter", "Cream", "Tomato", "Onion", "Garlic", "Ginger", "Garam Masala"], "steps": ["Soak black urad dal and rajma overnight.", "Pressure cook dal until soft (4-5 whistles).", "Melt butter; sauté onions till dark golden.", "Add ginger-garlic paste; cook 3 mins.", "Add tomato puree, cook until oil separates.", "Add cooked dal, cream, garam masala; simmer 20 mins."], "category": "Main Course", "ings": [{ "n": "Dal", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }] },
+  { "name": "Palak Paneer", "time": "30 min", "serves": "4", "diff": "Easy", "cal": "310 kcal", "margin": "68%", "tags": ["Spinach", "Paneer", "Onion", "Tomato", "Cream", "Garlic", "Ginger", "Garam Masala"], "steps": ["Blanch spinach 2 mins; shock in cold water.", "Blend spinach to smooth puree.", "Sauté onions, garlic, ginger; add tomatoes.", "Add spinach puree and spices; cook 5 mins.", "Add paneer cubes and cream; simmer 5 mins.", "Season with garam masala; serve with roti."], "category": "Main Course", "ings": [{ "n": "Spinach", "a": "Standard portion", "c": "-" }, { "n": "Paneer", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }] },
+  { "name": "Chicken Biryani", "time": "60 min", "serves": "6", "diff": "Hard", "cal": "520 kcal", "margin": "60%", "tags": ["Chicken", "Rice", "Onion", "Yogurt", "Garam Masala", "Mint", "Olive Oil", "Ginger", "Garlic"], "steps": ["Marinate chicken in yogurt, fried onions, spices, mint for 2 hrs.", "Par-cook basmati rice until 70% done.", "Layer marinated chicken and rice in a heavy pot.", "Drizzle saffron milk, fried onions, ghee on top.", "Seal with foil; dum cook on low 25 mins.", "Rest 10 mins before serving."], "category": "Rice", "ings": [{ "n": "Chicken", "a": "Standard portion", "c": "-" }, { "n": "Rice", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Mint", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }] },
+  { "name": "Chole Bhature", "time": "45 min", "serves": "4", "diff": "Medium", "cal": "480 kcal", "margin": "72%", "tags": ["Dal", "Onion", "Tomato", "Garlic", "Ginger", "Garam Masala", "Olive Oil", "Flour"], "steps": ["Soak chickpeas overnight, pressure cook until soft.", "Fry onions until brown; add ginger-garlic paste.", "Add tomatoes, spices, cook until thick masala forms.", "Add chickpeas and water; simmer 15 mins.", "Make bhature dough with flour, yogurt, oil; rest 1 hr.", "Roll and deep fry bhature until puffed golden."], "category": "Main Course", "ings": [{ "n": "Dal", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Flour", "a": "Standard portion", "c": "-" }] },
+  { "name": "Egg Curry", "time": "25 min", "serves": "4", "diff": "Easy", "cal": "290 kcal", "margin": "75%", "tags": ["Eggs", "Onion", "Tomato", "Garlic", "Ginger", "Garam Masala", "Olive Oil", "Turmeric", "Chili"], "steps": ["Hard boil eggs, peel and make slits on surface.", "Fry eggs in oil until golden; set aside.", "Sauté onions until golden.", "Add garlic, ginger paste; cook 2 mins.", "Add tomatoes, turmeric, chili, garam masala; cook until thick.", "Add eggs and water; simmer 10 mins."], "category": "Main Course", "ings": [{ "n": "Eggs", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }] },
+  { "name": "Aloo Gobi", "time": "25 min", "serves": "4", "diff": "Easy", "cal": "200 kcal", "margin": "78%", "tags": ["Potato", "Onion", "Tomato", "Garlic", "Ginger", "Turmeric", "Cumin", "Coriander", "Olive Oil"], "steps": ["Cut potato and cauliflower into florets.", "Heat oil; add cumin seeds, let splutter.", "Add onions, garlic, ginger; sauté 5 mins.", "Add turmeric, chili, coriander powder.", "Add potatoes; cook 5 mins, add cauliflower.", "Cover and cook on low 15 mins."], "category": "Main Course", "ings": [{ "n": "Potato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Matar Paneer", "time": "30 min", "serves": "4", "diff": "Easy", "cal": "320 kcal", "margin": "66%", "tags": ["Paneer", "Tomato", "Onion", "Garlic", "Ginger", "Cream", "Garam Masala", "Olive Oil"], "steps": ["Blend onion, tomato, garlic, ginger into paste.", "Fry the paste in oil until deep brown.", "Add turmeric, chili, coriander powder; cook 2 mins.", "Add water to get gravy consistency; simmer 10 mins.", "Add paneer cubes and peas; cook 5 mins.", "Finish with cream and garam masala."], "category": "Main Course", "ings": [{ "n": "Paneer", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Paneer Tikka", "time": "30 min", "serves": "4", "diff": "Easy", "cal": "260 kcal", "margin": "65%", "tags": ["Paneer", "Yogurt", "Onion", "Garam Masala", "Chili", "Olive Oil", "Lemon"], "steps": ["Cut paneer, capsicum, onion into cubes.", "Marinate in yogurt, spices, lemon juice for 1 hr.", "Skewer alternating paneer and vegetables.", "Grill on high heat or in oven at 220°C for 12 mins.", "Baste with butter; grill 3 more mins for char.", "Serve with mint chutney and lemon wedge."], "category": "Starter", "ings": [{ "n": "Paneer", "a": "Standard portion", "c": "-" }, { "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Lemon", "a": "Standard portion", "c": "-" }] },
+  { "name": "Chicken Seekh Kebab", "time": "25 min", "serves": "4", "diff": "Medium", "cal": "240 kcal", "margin": "62%", "tags": ["Chicken", "Onion", "Garlic", "Ginger", "Garam Masala", "Coriander", "Chili", "Olive Oil"], "steps": ["Mince chicken finely; mix with raw onion, garlic, ginger.", "Add spices, fresh coriander, chili; mix thoroughly.", "Shape onto flat skewers; pat firmly.", "Grill on tandoor or charcoal for 8-10 mins.", "Rotate every 2 mins for even cooking.", "Serve hot with onion rings and chutney."], "category": "Starter", "ings": [{ "n": "Chicken", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Samosa", "time": "45 min", "serves": "8", "diff": "Medium", "cal": "180 kcal", "margin": "80%", "tags": ["Potato", "Onion", "Garam Masala", "Cumin", "Olive Oil", "Flour", "Coriander", "Chili"], "steps": ["Make stiff dough with flour, oil, salt; rest 20 mins.", "Boil potatoes; mash with spices, peas, coriander.", "Roll dough thin; cut into semicircles.", "Fold into cone, fill with potato mixture.", "Seal edges with water; shape into triangle.", "Deep fry on medium heat until golden crispy."], "category": "Snack", "ings": [{ "n": "Potato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }] },
+  { "name": "Onion Pakoda", "time": "15 min", "serves": "4", "diff": "Easy", "cal": "150 kcal", "margin": "85%", "tags": ["Onion", "Flour", "Chili", "Cumin", "Turmeric", "Olive Oil", "Coriander"], "steps": ["Slice onions thin; add salt, chili, cumin.", "Add besan (gram flour), turmeric, coriander.", "Add minimal water to make thick batter.", "Heat oil to 180°C.", "Drop small portions into oil; fry until crispy golden.", "Drain on paper; serve with chutney."], "category": "Snack", "ings": [{ "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }] },
+  { "name": "Aloo Tikki", "time": "20 min", "serves": "4", "diff": "Easy", "cal": "160 kcal", "margin": "82%", "tags": ["Potato", "Onion", "Coriander", "Cumin", "Garam Masala", "Chili", "Olive Oil"], "steps": ["Boil and mash potatoes completely smooth.", "Mix with chopped onion, green chili, coriander.", "Add garam masala, cumin, salt; mix well.", "Shape into flat round tikkis.", "Shallow fry in oil on medium heat 4 mins each side.", "Serve with tamarind and mint chutney."], "category": "Snack", "ings": [{ "n": "Potato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Tomato Coriander Soup", "time": "20 min", "serves": "4", "diff": "Easy", "cal": "90 kcal", "margin": "82%", "tags": ["Tomato", "Onion", "Garlic", "Ginger", "Coriander", "Butter", "Olive Oil"], "steps": ["Sauté onion, garlic, ginger in butter 3 mins.", "Add chopped tomatoes; cook 10 mins.", "Blend smooth; strain through sieve.", "Return to pan; add water to consistency.", "Season with salt, pepper, sugar.", "Serve hot garnished with cream and coriander."], "category": "Soup", "ings": [{ "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Chicken Soup", "time": "30 min", "serves": "6", "diff": "Easy", "cal": "120 kcal", "margin": "75%", "tags": ["Chicken", "Onion", "Garlic", "Ginger", "Coriander", "Olive Oil", "Lemon"], "steps": ["Boil chicken with onion, garlic, ginger until cooked.", "Remove chicken, shred finely.", "Strain the broth; return to heat.", "Add shredded chicken back to broth.", "Add lemon juice, coriander, black pepper.", "Serve piping hot with toasted bread."], "category": "Soup", "ings": [{ "n": "Chicken", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Lemon", "a": "Standard portion", "c": "-" }] },
+  { "name": "Jeera Rice", "time": "20 min", "serves": "4", "diff": "Easy", "cal": "200 kcal", "margin": "78%", "tags": ["Rice", "Cumin", "Butter", "Olive Oil"], "steps": ["Wash basmati rice; soak 20 mins.", "Heat ghee/butter; add cumin seeds.", "Let cumin crackle until aromatic.", "Add soaked rice; stir and toast 2 mins.", "Add water (1:1.5 ratio); bring to boil.", "Cover and cook on low 12 mins; rest 5 mins."], "category": "Rice", "ings": [{ "n": "Rice", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Vegetable Pulao", "time": "30 min", "serves": "4", "diff": "Easy", "cal": "240 kcal", "margin": "75%", "tags": ["Rice", "Onion", "Potato", "Garam Masala", "Cumin", "Butter", "Olive Oil"], "steps": ["Wash and soak rice 20 mins.", "Heat ghee; add whole spices and cumin.", "Add onions; fry until golden.", "Add mixed vegetables; sauté 5 mins.", "Add rice, water; season with salt.", "Cover and cook on dum 15 mins."], "category": "Rice", "ings": [{ "n": "Rice", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Potato", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Butter Naan", "time": "30 min", "serves": "6", "diff": "Medium", "cal": "180 kcal", "margin": "80%", "tags": ["Flour", "Yogurt", "Butter", "Sugar", "Olive Oil"], "steps": ["Mix flour, yogurt, sugar, salt into soft dough.", "Rest dough covered for 30 mins.", "Divide into balls; roll into oval shape.", "Place on hot tawa or tandoor.", "Cook until bubbles appear; flip and cook 1 min.", "Brush generously with butter; serve hot."], "category": "Bread", "ings": [{ "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Sugar", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Roti / Chapati", "time": "20 min", "serves": "6", "diff": "Easy", "cal": "120 kcal", "margin": "90%", "tags": ["Flour", "Olive Oil"], "steps": ["Knead whole wheat flour with water into soft dough.", "Rest dough 15 mins.", "Roll each ball into thin 6-inch circle.", "Cook on hot tawa 1 min each side.", "Press gently with cloth to puff up.", "Apply ghee; serve immediately."], "category": "Bread", "ings": [{ "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Paratha", "time": "25 min", "serves": "4", "diff": "Easy", "cal": "200 kcal", "margin": "88%", "tags": ["Flour", "Butter", "Olive Oil", "Potato"], "steps": ["Make soft dough with flour, salt, water.", "For stuffed: mix mashed potato with spices.", "Roll dough, place stuffing, fold and seal.", "Roll again gently into flat paratha.", "Cook on tawa with ghee/oil, pressing edges.", "Serve with pickle and yogurt."], "category": "Bread", "ings": [{ "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Potato", "a": "Standard portion", "c": "-" }] },
+  { "name": "Gulab Jamun", "time": "40 min", "serves": "8", "diff": "Medium", "cal": "250 kcal", "margin": "72%", "tags": ["Milk", "Flour", "Sugar", "Butter", "Olive Oil"], "steps": ["Mix milk powder, flour, butter into soft dough.", "Shape into small smooth balls.", "Fry on very low heat until deep brown.", "Make sugar syrup with sugar, water, cardamom.", "Drop hot jamuns into warm syrup immediately.", "Soak at least 30 mins before serving."], "category": "Dessert", "ings": [{ "n": "Milk", "a": "Standard portion", "c": "-" }, { "n": "Flour", "a": "Standard portion", "c": "-" }, { "n": "Sugar", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Kheer", "time": "35 min", "serves": "6", "diff": "Easy", "cal": "220 kcal", "margin": "74%", "tags": ["Rice", "Milk", "Sugar", "Cashews"], "steps": ["Wash and soak rice 15 mins.", "Boil milk; add soaked rice.", "Cook on low heat 20 mins, stirring frequently.", "Add sugar and cardamom powder.", "Add cashews, raisins, saffron.", "Serve hot or chilled."], "category": "Dessert", "ings": [{ "n": "Rice", "a": "Standard portion", "c": "-" }, { "n": "Milk", "a": "Standard portion", "c": "-" }, { "n": "Sugar", "a": "Standard portion", "c": "-" }, { "n": "Cashews", "a": "Standard portion", "c": "-" }] },
+  { "name": "Mango Lassi", "time": "5 min", "serves": "4", "diff": "Easy", "cal": "180 kcal", "margin": "78%", "tags": ["Yogurt", "Sugar", "Milk"], "steps": ["Add chilled yogurt to blender.", "Add mango pulp (fresh or canned).", "Add sugar to taste and chilled milk.", "Blend smooth and frothy.", "Pour into tall glasses with ice.", "Garnish with saffron or mint."], "category": "Beverage", "ings": [{ "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Sugar", "a": "Standard portion", "c": "-" }, { "n": "Milk", "a": "Standard portion", "c": "-" }] },
+  { "name": "Masala Chai", "time": "10 min", "serves": "4", "diff": "Easy", "cal": "80 kcal", "margin": "88%", "tags": ["Milk", "Sugar", "Ginger"], "steps": ["Boil water with ginger and whole spices.", "Add tea leaves; boil 2 mins.", "Add milk; bring to rolling boil.", "Add sugar; strain into cups.", "Serve hot.", "Optionally add lemon for cutting chai."], "category": "Beverage", "ings": [{ "n": "Milk", "a": "Standard portion", "c": "-" }, { "n": "Sugar", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }] },
+  { "name": "Masala Chaas", "time": "5 min", "serves": "4", "diff": "Easy", "cal": "60 kcal", "margin": "90%", "tags": ["Yogurt", "Cumin", "Coriander", "Ginger", "Mint", "Lemon"], "steps": ["Dilute yogurt with chilled water (1:2 ratio).", "Add roasted cumin powder.", "Add grated ginger, chopped coriander, mint.", "Add salt and a squeeze of lemon.", "Whisk or blend until frothy.", "Serve chilled with ice."], "category": "Beverage", "ings": [{ "n": "Yogurt", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Mint", "a": "Standard portion", "c": "-" }, { "n": "Lemon", "a": "Standard portion", "c": "-" }] },
+  { "name": "Masala Omelette", "time": "10 min", "serves": "2", "diff": "Easy", "cal": "200 kcal", "margin": "82%", "tags": ["Eggs", "Onion", "Tomato", "Chili", "Coriander", "Olive Oil"], "steps": ["Beat eggs with salt and pepper.", "Add finely chopped onion, tomato, green chili.", "Add coriander leaves; mix well.", "Heat oil in non-stick pan.", "Pour egg mix; cook on medium heat.", "Fold when set; serve with toast."], "category": "Snack", "ings": [{ "n": "Eggs", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Shahi Paneer", "time": "35 min", "serves": "4", "diff": "Medium", "cal": "380 kcal", "margin": "62%", "tags": ["Paneer", "Cream", "Cashews", "Onion", "Tomato", "Garam Masala", "Butter", "Milk"], "steps": ["Soak cashews in warm water 15 mins; blend to paste.", "Sauté onions, garlic, ginger, tomatoes until soft.", "Blend onion-tomato mixture smooth.", "Return to pan; add cashew paste, cream.", "Add whole garam masala and spices.", "Add paneer; simmer 10 mins."], "category": "Main Course", "ings": [{ "n": "Paneer", "a": "Standard portion", "c": "-" }, { "n": "Cream", "a": "Standard portion", "c": "-" }, { "n": "Cashews", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Garam Masala", "a": "Standard portion", "c": "-" }, { "n": "Butter", "a": "Standard portion", "c": "-" }, { "n": "Milk", "a": "Standard portion", "c": "-" }] },
+  { "name": "Paneer Bhurji", "time": "15 min", "serves": "4", "diff": "Easy", "cal": "240 kcal", "margin": "68%", "tags": ["Paneer", "Onion", "Tomato", "Chili", "Coriander", "Olive Oil", "Turmeric", "Cumin"], "steps": ["Crumble paneer coarsely.", "Heat oil; add cumin seeds.", "Sauté onions 3 mins; add green chili.", "Add tomatoes; cook until soft.", "Add turmeric, crumbled paneer; toss well.", "Finish with fresh coriander."], "category": "Snack", "ings": [{ "n": "Paneer", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Chili", "a": "Standard portion", "c": "-" }, { "n": "Coriander", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }] },
+  { "name": "Saag Aloo", "time": "25 min", "serves": "4", "diff": "Easy", "cal": "220 kcal", "margin": "76%", "tags": ["Spinach", "Potato", "Onion", "Garlic", "Ginger", "Cumin", "Mustard Seeds", "Turmeric", "Olive Oil"], "steps": ["Blanch spinach; squeeze dry and chop.", "Boil potatoes until just tender; cube.", "Heat oil; add mustard seeds and cumin.", "Add onion, garlic, ginger; fry 4 mins.", "Add potato cubes; cook 5 mins.", "Add spinach, turmeric, spices; toss and serve."], "category": "Main Course", "ings": [{ "n": "Spinach", "a": "Standard portion", "c": "-" }, { "n": "Potato", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Mustard Seeds", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] },
+  { "name": "Palak Dal", "time": "30 min", "serves": "4", "diff": "Easy", "cal": "200 kcal", "margin": "80%", "tags": ["Dal", "Spinach", "Onion", "Garlic", "Ginger", "Tomato", "Cumin", "Mustard Seeds", "Turmeric", "Olive Oil"], "steps": ["Pressure cook dal with turmeric until soft.", "Blanch spinach; blend roughly.", "Make tadka: heat oil, add mustard, cumin.", "Add onion, garlic, ginger, tomato; fry 5 mins.", "Mix in cooked dal and spinach.", "Simmer 5 mins; season with lemon."], "category": "Main Course", "ings": [{ "n": "Dal", "a": "Standard portion", "c": "-" }, { "n": "Spinach", "a": "Standard portion", "c": "-" }, { "n": "Onion", "a": "Standard portion", "c": "-" }, { "n": "Garlic", "a": "Standard portion", "c": "-" }, { "n": "Ginger", "a": "Standard portion", "c": "-" }, { "n": "Tomato", "a": "Standard portion", "c": "-" }, { "n": "Cumin", "a": "Standard portion", "c": "-" }, { "n": "Mustard Seeds", "a": "Standard portion", "c": "-" }, { "n": "Turmeric", "a": "Standard portion", "c": "-" }, { "n": "Olive Oil", "a": "Standard portion", "c": "-" }] }
+];
+
 
 async function fetchRecipes() {
   try {
@@ -63,14 +96,9 @@ function renderEngIngredients() {
 function suggestRecipes() {
   const selected = Array.from(document.querySelectorAll('.ing-tag.selected')).map(t => t.textContent.trim().replace(/^[^\s]+\s/, ''));
   const container = document.getElementById('recipe-results');
-  if (selected.length === 0) {
-    container.innerHTML = '<p style="font-size:14px;color:var(--text2)">Select ingredients above to see suggestions.</p>';
-    return;
-  }
-  
-  // Strict filtering: Every selected ingredient must be present in the recipe's tags
-  const filtered = recipes.filter(r => 
-    selected.every(s => 
+  // If no ingredients selected, show all recipes
+  const filtered = selected.length === 0 ? recipes : recipes.filter(r =>
+    selected.every(s =>
       r.tags.some(tag => tag.toLowerCase() === s.toLowerCase())
     )
   );
@@ -370,7 +398,13 @@ function addOrder() {
     return;
   }
 
+  const orderItemsSelect = document.getElementById('no-items');
+  if (orderItemsSelect) {
+    orderItemsSelect.innerHTML = recipes.map(r => `<option value="${r.name}">${r.name}</option>`).join('');
+  }
+
   document.getElementById('modal-new-order').style.display = 'flex';
+
 }
 function submitNewOrder() {
   const table = document.getElementById('no-table').value;
@@ -384,11 +418,40 @@ function submitNewOrder() {
   select.selectedIndex = -1; // reset
 }
 function addMenuItem() {
-  const name = document.getElementById('menu-dish').value.trim(), cost = document.getElementById('menu-cost').value, price = document.getElementById('menu-price').value;
+  const name = document.getElementById('menu-dish').value.trim();
+  const cost = document.getElementById('menu-cost').value;
+  const price = document.getElementById('menu-price').value;
+  const cat = document.getElementById('menu-cat').value;
+  const time = document.getElementById('menu-time').value || "20 min";
+
   if (!name || !cost || !price) { alert('Please fill all fields.'); return; }
+
   const margin = Math.round(((price - cost) / price) * 100);
-  const fb = document.getElementById('menu-feedback'); fb.style.display = 'block'; fb.textContent = `✅ "${name}" added — Margin: ${margin}%`;
-  document.getElementById('menu-dish').value = ''; document.getElementById('menu-cost').value = ''; document.getElementById('menu-price').value = '';
+
+  // Add to local recipes array
+  recipes.push({
+    name: name,
+    category: cat,
+    time: time.includes('min') ? time : time + " min",
+    margin: margin + "%",
+    serves: "4",
+    diff: "Easy",
+    cal: "250 kcal",
+    tags: [name],
+    steps: ["Steps for " + name + " not provided."],
+    ings: []
+  });
+
+  syncRecipesToUI();
+  suggestRecipes();
+
+  const fb = document.getElementById('menu-feedback');
+  fb.style.display = 'block';
+  fb.textContent = `✅ "${name}" added — Margin: ${margin}%`;
+
+  document.getElementById('menu-dish').value = '';
+  document.getElementById('menu-cost').value = '';
+  document.getElementById('menu-price').value = '';
   setTimeout(() => fb.style.display = 'none', 3000);
 }
 
@@ -403,6 +466,8 @@ function updateAuthUI() {
   let name = 'Kitchen Assistant Admin';
   let email = 'admin@gmail.com';
   let kid = 'KIT-#0042';
+  let location = 'Nashik, Maharashtra';
+  let cuisine = 'Indian';
 
   const savedAcc = localStorage.getItem('chefOS_account');
   if (savedAcc) {
@@ -410,6 +475,8 @@ function updateAuthUI() {
     name = acc.name || name;
     email = acc.email || email;
     kid = acc.kid || kid;
+    location = acc.location || location;
+    cuisine = acc.cuisine || cuisine;
   }
 
   const kidEl = document.getElementById('display-kid');
@@ -428,12 +495,54 @@ function updateAuthUI() {
   if (sn) sn.value = name;
   const sk = document.getElementById('setting-kid');
   if (sk) sk.value = kid;
+  const sl = document.getElementById('setting-location');
+  if (sl) sl.value = location;
+  const sc = document.getElementById('setting-cuisine');
+  if (sc) sc.value = cuisine;
+
+  const pdLoc = document.getElementById('pd-location');
+  if (pdLoc) pdLoc.textContent = location;
+  const pdCui = document.getElementById('pd-cuisine');
+  if (pdCui) pdCui.textContent = cuisine;
 
   // Create avatar initials
   const parts = name.split(' ');
   const initials = parts.length > 1 ? parts[0][0] + parts[1][0] : name.substring(0, 2);
   const avatarEl = document.getElementById('display-avatar');
   if (avatarEl) avatarEl.textContent = initials.toUpperCase();
+}
+
+function saveProfile(e) {
+  if (e) e.preventDefault();
+
+  const name = document.getElementById('setting-name').value.trim();
+  const location = document.getElementById('setting-location').value.trim();
+  const cuisine = document.getElementById('setting-cuisine').value;
+
+  if (!name || !location) {
+    alert('Name and Location are required.');
+    return;
+  }
+
+  const savedAcc = localStorage.getItem('chefOS_account');
+  let acc = savedAcc ? JSON.parse(savedAcc) : {};
+
+  acc.name = name;
+  acc.location = location;
+  acc.cuisine = cuisine;
+
+  localStorage.setItem('chefOS_account', JSON.stringify(acc));
+  updateAuthUI();
+
+  // Show a nice feedback
+  const btn = e.target;
+  const originalText = btn.textContent;
+  btn.textContent = '✅ Saved!';
+  btn.style.background = 'var(--green)';
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+  }, 2000);
 }
 
 // Close dropdown on click outside
@@ -444,4 +553,13 @@ window.addEventListener('click', function (e) {
   }
 });
 
-window.onload = function () { showApp(); fetchRecipes(); renderInventory(); renderOrders(); suggestRecipes(); updateDashboard(); };
+window.onload = function () {
+  showApp();
+  syncRecipesToUI(); // Sync local fallback first
+  fetchRecipes();
+  renderInventory();
+  renderOrders();
+  suggestRecipes();
+  updateDashboard();
+};
+
