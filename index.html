@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Assistant</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="auth.js"></script>
+</head>
+
+<body>
+  <script>checkAuth();</script>
+
+  <!-- NEW ORDER MODAL -->
+  <div id="modal-new-order" class="auth-wrap" style="display:none;z-index:9999;">
+    <div class="auth-card" style="width:400px;text-align:left;">
+      <h2 style="font-size:18px;margin-bottom:16px;">+ Create New Order</h2>
+      <div class="form-group">
+        <label>Select Table</label>
+        <select class="input" id="no-table">
+          <option>Table 1</option>
+          <option>Table 2</option>
+          <option>Table 3</option>
+          <option>Table 4</option>
+          <option>Table 5</option>
+          <option>Table 6</option>
+          <option>Table 7</option>
+          <option>Table 8</option>
+          <option>Table 9</option>
+          <option>Table 10</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-top:12px;">
+        <label>Select Items (Hold Ctrl/Cmd to select multiple)</label>
+        <select class="input" id="no-items" multiple style="height:120px;"></select>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:20px;">
+        <button class="btn btn-primary" style="flex:1;justify-content:center;" onclick="submitNewOrder()">Add
+          Order</button>
+
+        <button class="btn btn-ghost" style="flex:1;justify-content:center;"
+          onclick="document.getElementById('modal-new-order').style.display='none'">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="shell" id="app-shell" style="display:none;">
+    <header class="topbar">
+      <div class="topbar-logo">
+        <div class="icon">🧁</div>
+        <span>Kitchen Assistant</span>
+      </div>
+      <div id="display-kname" style="margin-left:24px;font-size:13px;color:var(--text2)">Kitchen Assistant</div>
+      <div class="topbar-right">
+        <span class="badge-live">● LIVE</span>
+        <span class="kitchen-id" id="display-kid">KIT-#0042</span>
+        <div style="position:relative;">
+          <div class="avatar" id="display-avatar"
+            onclick="document.getElementById('profile-dropdown').classList.toggle('show')" title="Open Profile">CK</div>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <div class="pd-header">
+              <span id="pd-name"
+                style="font-weight:700;font-size:14px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">ChefOS
+                Admin</span>
+              <span id="pd-email"
+                style="font-size:12px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">admin@chefos.com</span>
+            </div>
+            <button class="btn btn-ghost" onclick="logout()"
+              style="justify-content:center;border:none;border-radius:0;padding:12px;color:var(--red);">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <nav class="sidebar">
+      <div class="sidebar-section">Main</div>
+      <div class="nav-item active" onclick="navigate('dashboard',this)"><span class="nav-icon">📊</span> Dashboard</div>
+      <div class="nav-item" onclick="navigate('recipes',this)"><span class="nav-icon">📖</span> Recipe Suggestions</div>
+      <div class="nav-item" onclick="navigate(`ingredients`,this)"><span class="nav-icon">🥕</span> Ingredients</div>
+      <div class="nav-item" onclick="navigate(`inventory`,this)"><span class="nav-icon">📦</span> Inventory <span
+          class="nav-badge yellow">3</span></div>
+      <div class="nav-item" onclick="navigate('orders',this)"><span class="nav-icon">🧾</span> Order Management <span
+          class="nav-badge">8</span></div>
+
+      <div class="sidebar-section">Reports</div>
+      <div class="nav-item" onclick="navigate('menu',this)"><span class="nav-icon">🍽️</span> Menu Planner</div>
+      <div class="nav-item" onclick="navigate('analytics',this)"><span class="nav-icon">📈</span> Analytics</div>
+      <div class="sidebar-section">Settings</div>
+      <div class="nav-item" onclick="navigate('settings',this)"><span class="nav-icon">⚙️</span> Settings</div>
+    </nav>
+    <main class="main">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <h1>Kitchen Dashboard</h1>
+          <p>Tuesday, overview of today's kitchen operations — all systems nominal.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card" style="--accent-color:var(--accent)">
+            <div class="stat-label">Orders Today</div>
+            <div class="stat-value" id="dash-orders-total">147</div>
+            <div class="stat-trend up">↑ 12% vs yesterday</div>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:40%"></div>
+              <div class="mini-bar" style="height:65%"></div>
+              <div class="mini-bar" style="height:50%"></div>
+              <div class="mini-bar" style="height:80%"></div>
+              <div class="mini-bar active" style="height:100%"></div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--green)">
+            <div class="stat-label">Revenue</div>
+            <div class="stat-value">₹84,320</div>
+            <div class="stat-trend up">↑ 8.3% this week</div>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:60%"></div>
+              <div class="mini-bar" style="height:90%"></div>
+              <div class="mini-bar active" style="height:75%"></div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--yellow)">
+            <div class="stat-label">Avg Prep Time</div>
+            <div class="stat-value">14m</div>
+            <div class="stat-trend up">↑ 2m faster than target</div>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:80%"></div>
+              <div class="mini-bar" style="height:70%"></div>
+              <div class="mini-bar" style="height:65%"></div>
+              <div class="mini-bar" style="height:55%"></div>
+              <div class="mini-bar active" style="height:45%"></div>
+            </div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--red)">
+            <div class="stat-label">Low Stock Items</div>
+            <div class="stat-value" id="dash-low-stock">3</div>
+            <div class="stat-trend down">⚠ Requires attention</div>
+            <div class="mini-chart">
+              <div class="mini-bar" style="height:20%"></div>
+              <div class="mini-bar" style="height:30%"></div>
+              <div class="mini-bar" style="height:25%"></div>
+              <div class="mini-bar" style="height:40%"></div>
+              <div class="mini-bar active" style="height:35%;background:var(--red)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-2-1">
+          <div class="card">
+            <div class="card-title">🔔 Live Alerts</div>
+            <div id="alerts-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">📋 Active Orders</div>
+            <div style="display:flex;flex-direction:column;gap:8px;max-height:300px;overflow-y:auto;padding-right:4px;"
+              id="dash-active-orders"></div>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title">🍽️ Top Dishes Today</div>
+            <table class="tbl" id="top-dishes-table"></table>
+          </div>
+
+          <div class="card">
+            <div class="card-title">👨‍🍳 Staff on Duty <button class="btn btn-ghost btn-sm" onclick="showStaffModal()"
+                style="margin-left:auto">Manage</button></div>
+            <div style="display:flex;flex-direction:column;gap:10px" id="staff-container"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">🌡️ Equipment Status</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span
+                  style="font-size:13px">Main Oven</span><span class="chip chip-green">180°C ✓</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><span
+                  style="font-size:13px">Grill Station</span><span class="chip chip-green">220°C ✓</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><span
+                  style="font-size:13px">Refrigerator A</span><span class="chip chip-green">4°C ✓</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><span
+                  style="font-size:13px">Refrigerator B</span><span class="chip chip-yellow">6°C ⚠</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><span
+                  style="font-size:13px">Deep Fryer</span><span class="chip chip-green">175°C ✓</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RECIPE SUGGESTIONS -->
+      <div class="page" id="page-recipes">
+        <div class="page-header">
+          <h1>Recipe Suggestions</h1>
+          <p>Select available ingredients to get smart recipe recommendations.</p>
+        </div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-title">🥬 Select Available Ingredients</div>
+          <div class="ing-tags" id="ing-tags">
+            <div class="ing-tag selected" onclick="toggleIng(this)">🍗 Chicken</div>
+            <div class="ing-tag selected" onclick="toggleIng(this)">🧅 Onion</div>
+            <div class="ing-tag selected" onclick="toggleIng(this)">🍅 Tomato</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🧄 Garlic</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🫚 Olive Oil</div>
+            <div class="ing-tag selected" onclick="toggleIng(this)">🌶️ Chili</div>
+            <div class="ing-tag selected" onclick="toggleIng(this)">🌿 Garam Masala</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🥛 Cream</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🧀 Paneer</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🍚 Rice</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🥬 Spinach</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🫘 Dal</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🥚 Eggs</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🧈 Butter</div>
+            <div class="ing-tag" onclick="toggleIng(this)">🍋 Lemon</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" onclick="suggestRecipes()">🔍 Find Recipes</button>
+            <button class="btn btn-ghost" onclick="clearIngredients()">✕ Clear All</button>
+            <span style="font-size:12px;color:var(--text2)" id="ing-count">5 ingredients selected</span>
+          </div>
+        </div>
+        <div id="recipe-results" class="grid-2"></div>
+      </div>
+
+      <!-- INVENTORY -->
+      <div class="page" id="page-inventory">
+        <div class="page-header">
+          <h1>Inventory Management</h1>
+          <p>Track stock levels, get reorder alerts, and log deliveries.</p>
+        </div>
+        <div class="stats-row" style="grid-template-columns:repeat(2,1fr)">
+          <div class="stat-card" style="--accent-color:var(--green)">
+            <div class="stat-label">Total Items</div>
+            <div class="stat-value" id="inv-total-items">48</div>
+            <div class="stat-sub">Across all categories</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--yellow)">
+            <div class="stat-label">Low Stock</div>
+            <div class="stat-value" id="inv-low-stock">3</div>
+            <div class="stat-sub">Items below threshold</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title" style="justify-content:space-between">📦 Stock Levels<button
+                class="btn btn-primary btn-sm" onclick="showAddStock()">+ Add Item</button></div>
+            <div id="inventory-list"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">🔄 Log Transaction</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="form-group"><label>Item Name</label><select class="input" id="txn-item">
+                  <option>Chicken</option>
+                  <option>Tomatoes</option>
+                  <option>Onions</option>
+                  <option>Rice</option>
+                  <option>Dal</option>
+                  <option>Olive Oil</option>
+                  <option>Cream</option>
+                  <option>Garlic</option>
+                  <option>Garam Masala</option>
+                </select></div>
+              <div class="form-group"><label>Transaction Type</label><select class="input" id="txn-type">
+                  <option value="add">Received — Add Stock</option>
+                  <option value="use">Used — Deduct Stock</option>
+                  <option value="waste">Waste / Spoilage</option>
+                </select></div>
+              <div class="form-group"><label>Quantity</label><input class="input" id="txn-qty" type="number"
+                  placeholder="Enter quantity (kg / L / units)" min="0" /></div>
+              <div class="form-group"><label>Notes (optional)</label><input class="input" id="txn-notes"
+                  placeholder="e.g. Morning delivery from supplier" /></div>
+              <button class="btn btn-primary" onclick="logTransaction()" style="width:100%">✅ Log Transaction</button>
+              <div id="txn-feedback" style="font-size:13px;color:var(--green);display:none">Transaction logged
+                successfully!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="page" id="page-orders">
+        <div class="page-header">
+          <h1>Order Management</h1>
+          <p>Track orders from placement to service — drag through the pipeline.</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:20px;align-items:center">
+          <button class="btn btn-primary" onclick="addOrder()">+ New Order</button>
+          <button class="btn btn-ghost" onclick="clearReadyOrders()">✓ Clear Served</button>
+          <span style="margin-left:auto;font-size:13px;color:var(--text2)" id="order-summary">8 active orders
+            today</span>
+        </div>
+        <div class="card">
+          <div class="order-board" id="order-board"></div>
+        </div>
+      </div>
+
+
+
+      <!-- MENU PLANNER -->
+      <div class="page" id="page-menu">
+        <div class="page-header">
+          <h1>Menu Planner</h1>
+          <p>Plan daily and weekly menus, track profitability per dish.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">🗓️ Today's Menu</div>
+            <table class="tbl">
+              <thead>
+                <tr>
+                  <th>Dish</th>
+                  <th>Category</th>
+                  <th>Cost</th>
+                  <th>Price</th>
+                  <th>Margin</th>
+                </tr>
+              </thead>
+              <tbody id="menu-table-body">
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <div class="card-title">➕ Add Dish to Menu</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="form-group"><label>Dish Name</label><input class="input" id="menu-dish"
+                  placeholder="e.g. Chicken Biryani" /></div>
+              <div class="form-grid" style="grid-template-columns:1fr 1fr">
+                <div class="form-group"><label>Category</label><select class="input" id="menu-cat">
+                    <option>Starter</option>
+                    <option>Main</option>
+                    <option>Dessert</option>
+                    <option>Beverage</option>
+                  </select></div>
+                <div class="form-group"><label>Prep Time (min)</label><input class="input" id="menu-time" type="number"
+                    placeholder="25" /></div>
+              </div>
+              <div class="form-grid" style="grid-template-columns:1fr 1fr">
+                <div class="form-group"><label>Cost Price (₹)</label><input class="input" id="menu-cost" type="number"
+                    placeholder="130" /></div>
+                <div class="form-group"><label>Sell Price (₹)</label><input class="input" id="menu-price" type="number"
+                    placeholder="380" /></div>
+              </div>
+              <button class="btn btn-primary" onclick="addMenuItem()" style="width:100%">+ Add to Menu</button>
+              <div id="menu-feedback" style="font-size:13px;color:var(--green);display:none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INGREDIENTS -->
+      <div class="page" id="page-ingredients">
+        <div class="page-header">
+          <h1>Ingredients</h1>
+          <p>Select a recipe to view its full ingredient breakdown.</p>
+        </div>
+        <div class="card">
+          <div class="card-title" id="ing-recipe-name">No recipe selected</div>
+          <div id="ing-rec-content">
+            <p style="font-size:13px;color:var(--text2);">Go to Recipe Suggestions and select a recipe to see
+              ingredients here.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANALYTICS -->
+      <div class="page" id="page-analytics">
+        <div class="page-header">
+          <h1>Analytics</h1>
+          <p>Weekly performance insights for your commercial kitchen.</p>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card" style="--accent-color:var(--accent)">
+            <div class="stat-label">Weekly Orders</div>
+            <div class="stat-value">842</div>
+            <div class="stat-trend up">↑ 14% WoW</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--green)">
+            <div class="stat-label">Weekly Revenue</div>
+            <div class="stat-value">₹4.8L</div>
+            <div class="stat-trend up">↑ 9% WoW</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--blue)">
+            <div class="stat-label">Avg Table Turn</div>
+            <div class="stat-value">42m</div>
+            <div class="stat-trend up">↓ 3m faster</div>
+          </div>
+          <div class="stat-card" style="--accent-color:var(--purple)">
+            <div class="stat-label">Customer Rating</div>
+            <div class="stat-value">4.7⭐</div>
+            <div class="stat-trend up">↑ 0.2 this week</div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📊 Orders by Day (This Week)</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+              <div class="inv-row" style="border:none;padding:6px 0">
+                <div style="flex:0 0 50px;font-size:12px;color:var(--text2)">Mon</div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:72%;background:var(--accent)"></div>
+                </div>
+                <div style="flex:0 0 50px;font-size:12px;font-family:var(--mono);text-align:right">108</div>
+              </div>
+              <div class="inv-row" style="border:none;padding:6px 0">
+                <div style="flex:0 0 50px;font-size:12px;color:var(--text2)">Tue</div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:88%;background:var(--accent)"></div>
+                </div>
+                <div style="flex:0 0 50px;font-size:12px;font-family:var(--mono);text-align:right">132</div>
+              </div>
+              <div class="inv-row" style="border:none;padding:6px 0">
+                <div style="flex:0 0 50px;font-size:12px;color:var(--text2)">Wed</div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:65%;background:var(--accent)"></div>
+                </div>
+                <div style="flex:0 0 50px;font-size:12px;font-family:var(--mono);text-align:right">98</div>
+              </div>
+              <div class="inv-row" style="border:none;padding:6px 0">
+                <div style="flex:0 0 50px;font-size:12px;color:var(--text2)">Thu</div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:100%;background:var(--green)"></div>
+                </div>
+                <div style="flex:0 0 50px;font-size:12px;font-family:var(--mono);text-align:right">147</div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🍽️ Revenue by Category</div>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:10px">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span>Main
+                    Course</span><span style="color:var(--accent)">52% — ₹2.5L</span></div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:52%;background:var(--accent)"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+                  <span>Starters</span><span style="color:var(--blue)">22% — ₹1.1L</span>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:22%;background:var(--blue)"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+                  <span>Beverages</span><span style="color:var(--green)">14% — ₹67K</span>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:14%;background:var(--green)"></div>
+                </div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px">
+                  <span>Desserts</span><span style="color:var(--purple)">12% — ₹58K</span>
+                </div>
+                <div class="progress-wrap">
+                  <div class="progress-bar" style="width:12%;background:var(--purple)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="page" id="page-settings">
+        <div class="page-header">
+          <h1>Settings</h1>
+          <p>Configure your kitchen profile, alerts, and preferences.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">🏪 Kitchen Profile</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="form-group"><label>Kitchen Name</label><input class="input" id="setting-name"
+                  value="ChefOS Commercial Kitchen" /></div>
+              <div class="form-group"><label>Location</label><input class="input" value="Nashik, Maharashtra" /></div>
+              <div class="form-group"><label>Cuisine Type</label><select class="input">
+                  <option>Indian</option>
+                  <option>Continental</option>
+                  <option>Multi-cuisine</option>
+                </select></div>
+              <div class="form-group"><label>Kitchen ID</label><input class="input" id="setting-kid"
+                  value="KIT-#0042" /></div><button class="btn btn-primary" onclick="saveProfile(event)">Save
+                Profile</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🔔 Alert Thresholds</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="form-group"><label>Low Stock Alert (kg)</label><input class="input" type="number" value="5" />
+              </div>
+              <div class="form-group"><label>Critical Stock Alert (kg)</label><input class="input" type="number"
+                  value="2" /></div>
+              <div class="form-group"><label>Expiry Warning (hours)</label><input class="input" type="number"
+                  value="48" /></div>
+              <div class="form-group"><label>Max Prep Time Alert (min)</label><input class="input" type="number"
+                  value="20" /></div><button class="btn btn-primary" onclick="alert('Alert settings saved!')">Save
+                Alerts</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
