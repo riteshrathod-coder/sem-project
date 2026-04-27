@@ -6,7 +6,7 @@ function navigate(page, el) {
   if (page === 'inventory') renderInventory();
   if (page === 'orders') renderOrders();
   if (page === 'recipes') suggestRecipes();
-  if (page === 'ingredients' && window.activeRec) renderEngIngredients();
+  if (page === 'ingredients' && activeRec) renderEngIngredients();
 }
 function toggleIng(el) { el.classList.toggle('selected'); updateIngCount(); }
 function updateIngCount() {
@@ -75,7 +75,7 @@ let activeRec = null;
 function selectRecipeForIngredients(rIndex) {
   if (window.lastScoredRecipes && window.lastScoredRecipes[rIndex]) {
     activeRec = window.lastScoredRecipes[rIndex];
-    navigate('ingredients', document.querySelectorAll('.nav-item')[3]);
+    navigate('ingredients', document.querySelectorAll('.nav-item')[2]);
     renderEngIngredients();
   }
 }
@@ -110,8 +110,7 @@ function suggestRecipes() {
   }
 
   container.innerHTML = filtered.map((r, i) => `
-    <div class="recipe-card" style="position:relative">
-      <div onclick="toggleRecipe(${i})" style="cursor:pointer;">
+    <div class="recipe-card" style="position:relative" onclick="toggleRecipe(${i})">
         <div class="recipe-header">
           <div>
             <div class="recipe-name">${r.name}</div>
@@ -125,11 +124,10 @@ function suggestRecipes() {
           <span class="chip chip-green" style="font-size:13px">MATCH ✓</span>
         </div>
         <div style="font-size:12px;color:var(--text2);margin-top:8px">Uses: ${r.tags.join(' · ')}</div>
-        <div class="recipe-steps" id="rsteps-${i}" onclick="event.stopPropagation()">
+        <div class="recipe-steps" id="rsteps-${i}">
           <ol>${r.steps.map(s => `<li class="recipe-step">${s}</li>`).join('')}</ol>
           <div style="margin-top:10px;font-size:12px;color:var(--text2)">🔥 ${r.cal} per portion · ${r.category}</div>
         </div>
-      </div>
       <div style="display:flex;align-items:center;gap:12px;margin-top:12px;">
         <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();selectRecipeForIngredients(${i})">📋 View Ingredients</button>
         <span style="font-size:12px;color:var(--accent);">Click anywhere to view steps ▾</span>
